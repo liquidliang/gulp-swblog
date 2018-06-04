@@ -4,7 +4,6 @@ const fs = require('fs');
 const path = require('path');
 const mkdirp = require('mkdirp');
 const copy = require('copy');
-const template = require('lodash.template');
 const indexerPlugin = require('gulp-markdown-index');
 
 

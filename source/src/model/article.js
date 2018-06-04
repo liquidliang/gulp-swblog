@@ -69,7 +69,7 @@ const getName = (path) => {
   return arr ? arr[1] : '';
 }
 
-const getURL = (o) => o.path + '?mtime=' + o.mtime;
+const getURL = (o) => '/' + o.path + '?mtime=' + o.mtime;
 
 const getPath = (pathWithSearch) => decodeURIComponent(pathWithSearch.replace(location.origin + '/', '').replace(/\?[^?]+/, ''));
 
