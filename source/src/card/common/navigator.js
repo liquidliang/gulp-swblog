@@ -3,7 +3,7 @@ const m_article = require('model/article');
 const m_config = require('model/config');
 
 
-BCD.addEvent('navigator_search', function(ele){
+BCD.addCommand('navigator_search', function(ele){
   ele.html('<div class="form-group open">'+
   '  <input type="text" class="form-control" placeholder="Search">'+
   '  <ul class="dropdown-menu" style="right:auto;display:none"></ul>'+

@@ -24,22 +24,23 @@ module.exports = function (page, key) {
         return m_initOption.notRender(hasRender);
       }
       currentHash = location.hash;
+      let hashArr = decodeURIComponent(location.hash).split('/');
       viewList.empty();
       if (key == 'index') {
-        m_article.getListByTag(0, BCD.getHash(1)).then((data) => {
+        m_article.getListByTag(0, hashArr[2]).then((data) => {
           data.title = "最新文章";
           data.hrefHead = '#!/index';
           viewList.reset(data);
         });
       } else if (key == 'tag') {
-        let tag = BCD.getHash(1);
-        m_article.getListByTag(tag, BCD.getHash(2)).then((data) => {
+        let tag = hashArr[2];
+        m_article.getListByTag(tag, hashArr[3]).then((data) => {
           data.title = '"' + tag + '" 的最新文章';
           data.hrefHead = '#!/tag/' + tag;
           viewList.reset(data);
         });
       } else if (m_article.hasCatalog(key)) {
-        let pageNum = parseInt(BCD.getHash(1) || 0);
+        let pageNum = parseInt(hashArr[2] || 0);
         if (pageNum === 0) {
           if (viewTop) {
             viewTop.show();

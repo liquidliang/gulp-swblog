@@ -2,32 +2,11 @@
 
 const path = require('path');
 const koa = require('koa');
-const logger = require('koa-logger');
-const views = require('koa-views');
-const koaBody = require('koa-body');
 const koaStatic = require('koa-static');
 const onError = require('koa-onerror');
 
 const app = new koa();
 onError(app);
-
-// x-response-time
-
-app.use(function *(next){
-  var start = new Date;
-  yield next;
-  var ms = new Date - start;
-  this.set('X-Response-Time', ms + 'ms');
-});
-
-// logger
-
-app.use(function *(next){
-  var start = new Date;
-  yield next;
-  var ms = new Date - start;
-  console.info('%s %s - %s ms', this.method, this.url, ms);
-});
 
 //////////////
 // 业务逻辑 //

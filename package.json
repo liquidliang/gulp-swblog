@@ -1,10 +1,10 @@
 {
   "name": "gulp-swblog",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Create a swblog in your static directory",
   "dependencies": {
     "copy": "^0.3.2",
-    "gulp-markdown-index": "^1.0.2",
+    "gulp-markdown-index": "^1.1.1",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
@@ -19,13 +19,8 @@
     "gulp-plumber": "^1.2.0",
     "jest": "^23.1.0",
     "koa": "^2.5.1",
-    "koa-body": "^1.5.0",
-    "koa-logger": "^3.2.0",
     "koa-onerror": "^2.0.0",
-    "koa-router": "^5.4.0",
     "koa-static": "^2.0.0",
-    "koa-view": "^2.1.1",
-    "koa-views": "^4.1.0",
     "plugin-error": "^1.0.1",
     "simple-git": "^1.95.1",
     "style-loader": "^0.21.0",

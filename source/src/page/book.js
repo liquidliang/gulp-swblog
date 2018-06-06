@@ -60,10 +60,10 @@ module.exports = function (page, key) {
           });
           viewSlidebar.reset(slidebar);
           setTimeout(function () {
-            viewSlidebar.bindEvent();
+            viewSlidebar.exeCommand();
           });
         }
-        let fileName = key + location.hash.replace(baseHash, '');
+        let fileName = decodeURIComponent(key + location.hash.replace(baseHash, ''));
         if (m_article.hasArticle(fileName)) {
           m_article.getArticleContent(fileName).then((data) => {
             m_readHistory.addHistory(fileName);

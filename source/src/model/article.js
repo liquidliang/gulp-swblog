@@ -14,7 +14,7 @@ let isPreload = false;
 const sidebarName = '$sidebar$';
 const getSidebarPath = (path) => path + '/' + sidebarName + '.md';
 
-BCD.addEvent('mkview', function (ele, option, data) {
+BCD.addCommand('mkview', function (ele, option, data) {
   let name = m_util.getRandomName();
   let result;
   if ('idx' in option) {
@@ -503,10 +503,10 @@ module.exports = {
   initArticle,
   catalogDict,
   articleDict,
-  hasCatalog: (path) => !!catalogDict[path],
-  hasArticle: (path) => !!articleDict[path],
-  hasBook: (path) => !!bookDict[path],
-  getCatalogMessage: (path) => catalogDict[path],
+  hasCatalog: (path) => !!catalogDict[decodeURIComponent(path)],
+  hasArticle: (path) => !!articleDict[decodeURIComponent(path)],
+  hasBook: (path) => !!bookDict[decodeURIComponent(path)],
+  getCatalogMessage: (path) => catalogDict[decodeURIComponent(path)],
   getCatalogs: () => catalogList,
   getBooks: () => bookList,
   getTagArticles,

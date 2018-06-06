@@ -90,7 +90,7 @@ var getSidebarPath = function getSidebarPath(path) {
   return path + '/' + sidebarName + '.md';
 };
 
-BCD.addEvent('mkview', function (ele, option, data) {
+BCD.addCommand('mkview', function (ele, option, data) {
   var name = m_util.getRandomName();
   var result = void 0;
   if ('idx' in option) {
@@ -628,16 +628,16 @@ module.exports = {
   catalogDict: catalogDict,
   articleDict: articleDict,
   hasCatalog: function hasCatalog(path) {
-    return !!catalogDict[path];
+    return !!catalogDict[decodeURIComponent(path)];
   },
   hasArticle: function hasArticle(path) {
-    return !!articleDict[path];
+    return !!articleDict[decodeURIComponent(path)];
   },
   hasBook: function hasBook(path) {
-    return !!bookDict[path];
+    return !!bookDict[decodeURIComponent(path)];
   },
   getCatalogMessage: function getCatalogMessage(path) {
-    return catalogDict[path];
+    return catalogDict[decodeURIComponent(path)];
   },
   getCatalogs: function getCatalogs() {
     return catalogList;
@@ -1215,7 +1215,7 @@ var go = function go(ele, option, data) {
     m_util.stopBubble(e);
   });
 };
-BCD.addEvent('go', go);
+BCD.addCommand('go', go);
 //data-on="?m=back"
 var back = function back(ele, option, data) {
   ele.on('click', function (e) {
@@ -1223,7 +1223,7 @@ var back = function back(ele, option, data) {
     m_util.stopBubble(e);
   });
 };
-BCD.addEvent('back', back);
+BCD.addCommand('back', back);
 
 var replaceHash = function replaceHash(ele, option, data) {
   ele.on('click', function (e) {
@@ -1231,7 +1231,7 @@ var replaceHash = function replaceHash(ele, option, data) {
     m_util.stopBubble(e);
   });
 };
-BCD.addEvent('replaceHash', replaceHash);
+BCD.addCommand('replaceHash', replaceHash);
 //事件绑定
 module.exports = {
   go: go,
@@ -1329,7 +1329,7 @@ var m_util = __webpack_require__(2);
 var m_article = __webpack_require__(0);
 var m_config = __webpack_require__(1);
 
-BCD.addEvent('navigator_search', function (ele) {
+BCD.addCommand('navigator_search', function (ele) {
   ele.html('<div class="form-group open">' + '  <input type="text" class="form-control" placeholder="Search">' + '  <ul class="dropdown-menu" style="right:auto;display:none"></ul>' + '</div>' + '<button type="submit" class="btn btn-primary">Submit</button>');
   var viewInput = ele.find('input');
   var viewDrop = ele.find('ul').setView({
@@ -1466,22 +1466,23 @@ module.exports = function (page, key) {
         return m_initOption.notRender(hasRender);
       }
       currentHash = location.hash;
+      var hashArr = decodeURIComponent(location.hash).split('/');
       viewList.empty();
       if (key == 'index') {
-        m_article.getListByTag(0, BCD.getHash(1)).then(function (data) {
+        m_article.getListByTag(0, hashArr[2]).then(function (data) {
           data.title = "最新文章";
           data.hrefHead = '#!/index';
           viewList.reset(data);
         });
       } else if (key == 'tag') {
-        var tag = BCD.getHash(1);
-        m_article.getListByTag(tag, BCD.getHash(2)).then(function (data) {
+        var tag = hashArr[2];
+        m_article.getListByTag(tag, hashArr[3]).then(function (data) {
           data.title = '"' + tag + '" 的最新文章';
           data.hrefHead = '#!/tag/' + tag;
           viewList.reset(data);
         });
       } else if (m_article.hasCatalog(key)) {
-        var pageNum = parseInt(BCD.getHash(1) || 0);
+        var pageNum = parseInt(hashArr[2] || 0);
         if (pageNum === 0) {
           if (viewTop) {
             viewTop.show();
@@ -1736,10 +1737,10 @@ module.exports = function (page, key) {
           });
           viewSlidebar.reset(slidebar);
           setTimeout(function () {
-            viewSlidebar.bindEvent();
+            viewSlidebar.exeCommand();
           });
         }
-        var fileName = key + location.hash.replace(baseHash, '');
+        var fileName = decodeURIComponent(key + location.hash.replace(baseHash, ''));
         if (m_article.hasArticle(fileName)) {
           m_article.getArticleContent(fileName).then(function (data) {
             m_readHistory.addHistory(fileName);

@@ -6,7 +6,7 @@ const go = (ele, option, data)=>{
     m_util.stopBubble(e);
   })
 };
-BCD.addEvent('go', go);
+BCD.addCommand('go', go);
 //data-on="?m=back"
 const back = (ele, option, data)=>{
   ele.on('click', function(e){
@@ -14,7 +14,7 @@ const back = (ele, option, data)=>{
     m_util.stopBubble(e);
   })
 };
-BCD.addEvent('back', back);
+BCD.addCommand('back', back);
 
 const replaceHash = (ele, option, data)=>{
   ele.on('click', function(e){
@@ -22,7 +22,7 @@ const replaceHash = (ele, option, data)=>{
     m_util.stopBubble(e);
   })
 };
-BCD.addEvent('replaceHash', replaceHash);
+BCD.addCommand('replaceHash', replaceHash);
 //事件绑定
 module.exports = {
   go,
