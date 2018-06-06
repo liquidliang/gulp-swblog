@@ -185,7 +185,7 @@ self.addEventListener('fetch', function (event) {
   }
 
   for (var dbName in regDict) {
-    if (regDict[dbName].test(url)) {
+    if (regDict[dbName].test(requestURL.pathname)) {
       return event.respondWith(fetchCache(dbName, req));
     }
   }

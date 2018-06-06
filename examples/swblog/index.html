@@ -36,5 +36,10 @@
 
 <body>
 	<script src="./dist/index.min.js"></script>
+	<script>
+		if(!window.BCD){
+			location.replace(location.href + '/index.html');
+		}
+	</script>
 </body>
 </html>
