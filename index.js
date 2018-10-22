@@ -50,6 +50,12 @@ module.exports = function (directoryName, options) {
     encoding: 'utf8'
   });
 
+  let indexer = indexerPlugin(path.resolve(directoryName, './json/article.json'), options.staticDir);
 
-  return indexerPlugin(path.resolve(directoryName, './json/article.json'), options.staticDir);
+  // indexer.on('data', function (file) {
+  //   let list = JSON.parse(''+file.contents);
+  //   console.log(arguments);
+  // })
+
+  return indexer;
 };

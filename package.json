@@ -1,10 +1,11 @@
 {
   "name": "gulp-swblog",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "Create a swblog in your static directory",
   "dependencies": {
     "copy": "^0.3.2",
-    "gulp-markdown-index": "^1.1.1",
+    "gulp-git-mtime": "0.0.1",
+    "gulp-markdown-index": "^1.1.3",
     "mkdirp": "^0.5.1"
   },
   "devDependencies": {
@@ -12,7 +13,7 @@
     "babel-loader": "^7.1.4",
     "babel-preset-es2015": "^6.24.1",
     "css-loader": "^0.28.11",
-    "gulp": "^3.9.1",
+    "gulp": "^4.0.0",
     "gulp-clean-css": "^3.9.4",
     "gulp-less": "^3.5.0",
     "gulp-open": "^3.0.1",
