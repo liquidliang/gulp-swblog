@@ -68,8 +68,8 @@ gulp.task('build', function () {
 
 
 gulp.task('watch', function() {
-    gulp.run(['dev', 'server']);
-    gulp.watch(['source/src/**/*.js', 'source/src/**/*.css'], ['dev']);
-    gulp.watch(['blog/**/**.md'], ['gen']);
-    gulp.watch(['source/less/**/**.less'], ['less']);
+  gulp.series('dev', 'server').apply(this, arguments);
+  gulp.watch(['source/src/**/*.js', 'source/src/**/*.css'], gulp.series('dev'));
+  gulp.watch(['blog/**/**.md'], gulp.series('gen'));
+  gulp.watch(['source/less/**/**.less'], gulp.series('less'));
 });

@@ -1,6 +1,6 @@
 {
   "name": "gulp-swblog",
-  "version": "1.0.5",
+  "version": "1.0.6",
   "description": "Create a swblog in your static directory",
   "dependencies": {
     "copy": "^0.3.2",

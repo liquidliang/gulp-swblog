@@ -32,7 +32,7 @@ const getConfig = new Promise((resolve)=>{
       return 1; //缓存数据到localStorage
     }
     resolve();
-  }, 0, 1E3, true);
+  });
 });
 
 

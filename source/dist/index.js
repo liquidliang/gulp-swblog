@@ -373,7 +373,7 @@ var initArticle = new Promise(function (resolve) {
     }
     resolve();
     return 1; //缓存数据到localStorage
-  }, 0, 1E3, true);
+  });
 });
 
 //获取包含相关tag文章列表
@@ -705,7 +705,7 @@ var getConfig = new Promise(function (resolve) {
       return 1; //缓存数据到localStorage
     }
     resolve();
-  }, 0, 1E3, true);
+  });
 });
 
 window.CONFIG = module.exports = {
